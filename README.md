@@ -1,4 +1,4 @@
-# Heading 🍔 FoodExpress - Online Food Ordering Frontend
+#  🍔 FoodExpress - Online Food Ordering Website - A Simple frontend project
 
   FoodExpress is a responsive frontend food ordering web application built using HTML, CSS, and JavaScript.
   It allows users to browse food items, filter by categories, add items to a cart, and simulate checkout.
