@@ -54,10 +54,13 @@ Button changes to Added to Cart.
 ## ▶️ How to Run the Project
 
 Clone the repository
-git clone https://github.com/yourusername/foodexpress.git
 Open the project folder
 Run the project by opening index.html in your browser.
 No installation or backend required.
+
+# Deployment - Feel free to use this
+https://foodxpress-a-online-food-ordering-website.onrender.com
+
 
 ## 📸 Screenshots
 
