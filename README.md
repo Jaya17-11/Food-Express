@@ -96,5 +96,3 @@ https://foodxpress-a-online-food-ordering-website.onrender.com
 👩‍💻 Author
 
 Jaya Lakshmi
-
-If you like this project, feel free to ⭐ the repository.
