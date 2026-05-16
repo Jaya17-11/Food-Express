@@ -23,6 +23,7 @@ This project demonstrates DOM manipulation, responsive UI design, and interactiv
   HTML5 – Structure of the application
   CSS3 – Styling and responsive design
   JavaScript (Vanilla JS) – Dynamic functionality and DOM manipulation
+  Bootstrap - interactive UI sections
   Font Awesome – Icons
 
 ## 📂 Project Structure
