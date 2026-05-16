@@ -4,7 +4,7 @@ const menuItems = [
         name: "Margherita Pizza",
         category: "pizza",
         price: 12.99,
-        img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+        img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
         desc: "Classic pizza with tomato sauce, mozzarella, and basil"
     },
     {
@@ -12,7 +12,7 @@ const menuItems = [
         name: "Pepperoni Pizza",
         category: "pizza",
         price: 14.99,
-        img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+        img: "https://images.unsplash.com/photo-1628840042765-356cda07504e",
         desc: "Pizza with tomato sauce, mozzarella, and pepperoni"
     },
     {
@@ -20,68 +20,35 @@ const menuItems = [
         name: "Veggie Burger",
         category: "burger",
         price: 9.99,
-        img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        desc: "Vegetarian burger with fresh vegetables and special sauce"
+        img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+        desc: "Vegetarian burger with fresh vegetables"
     },
     {
         id: 4,
         name: "Cheeseburger",
         category: "burger",
         price: 10.99,
-        img: "https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        desc: "Classic beef burger with cheese, lettuce, and tomato"
+        img: "https://images.unsplash.com/photo-1561758033-d89a9ad46330",
+        desc: "Classic beef burger with cheese"
     },
     {
         id: 5,
         name: "Spaghetti Carbonara",
         category: "pasta",
         price: 11.99,
-        img: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        desc: "Pasta with eggs, cheese, pancetta, and black pepper"
+        img: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb",
+        desc: "Pasta with eggs, cheese, pancetta"
     },
     {
         id: 6,
-        name: "Penne Arrabiata",
-        category: "pasta",
-        price: 10.99,
-        img: "https://images.unsplash.com/photo-1611270629569-8b357cb88da9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        desc: "Penne pasta with spicy tomato sauce"
-    },
-    {
-        id: 7,
-        name: "Caesar Salad",
-        category: "salad",
-        price: 8.99,
-        img: "https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        desc: "Romaine lettuce with croutons, parmesan, and Caesar dressing"
-    },
-    {
-        id: 8,
         name: "Greek Salad",
         category: "salad",
-        price: 9.99,
-        img: "https://images.unsplash.com/photo-1607532941433-304659e8198a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        desc: "Fresh vegetables with feta cheese and olives"
-    },
-    {
-        id: 9,
-        name: "Tiramisu",
-        category: "dessert",
-        price: 6.99,
-        img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        desc: "Classic Italian dessert with coffee-soaked ladyfingers"
-    },
-    {
-        id: 10,
-        name: "Chocolate Lava Cake",
-        category: "dessert",
-        price: 7.99,
-        img: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-        desc: "Warm chocolate cake with a molten center"
+        price: 8.99,
+        img: "https://images.unsplash.com/photo-1607532941433-304659e8198a",
+        desc: "Fresh vegetables with feta cheese"
     }
 ];
 
-// DOM Elements
 const menuContainer = document.querySelector('.menu-items');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const cartBtn = document.querySelector('.cart-icon');
@@ -92,234 +59,246 @@ const cartTotal = document.querySelector('.total-price');
 const cartCount = document.querySelector('.cart-count');
 const checkoutBtn = document.querySelector('.checkout-btn');
 
-// Cart
 let cart = [];
 
-// Display Menu Items
-function displayMenuItems(menuItems) {
-    let displayMenu = menuItems.map(item => {
+function displayMenuItems(items){
+
+    menuContainer.innerHTML = items.map(item => {
+
         return `
-        <div class="menu-item" data-id="${item.id}" data-category="${item.category}">
-            <img src="${item.img}" alt="${item.name}">
-            <div class="menu-item-info">
-                <h3>${item.name}</h3>
-                <p>${item.desc}</p>
-                <span class="price">$${item.price.toFixed(2)}</span>
-                <button class="add-to-cart">Add to Cart</button>
+        <div class="col-md-6 col-lg-4">
+
+            <div class="menu-item h-100" data-id="${item.id}">
+
+                <img src="${item.img}" alt="${item.name}">
+
+                <div class="menu-item-info">
+
+                    <h3>${item.name}</h3>
+
+                    <p>${item.desc}</p>
+
+                    <span class="price">$${item.price.toFixed(2)}</span>
+
+                    <button class="btn btn-danger add-to-cart">
+                        Add to Cart
+                    </button>
+
+                </div>
             </div>
         </div>
         `;
-    });
-    displayMenu = displayMenu.join('');
-    menuContainer.innerHTML = displayMenu;
-    
-    // Add event listeners to all add to cart buttons
-    const addToCartBtns = document.querySelectorAll('.add-to-cart');
-    addToCartBtns.forEach(btn => {
+    }).join('');
+
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
         btn.addEventListener('click', addToCart);
     });
 }
 
-// Filter Menu Items
 filterBtns.forEach(btn => {
+
     btn.addEventListener('click', () => {
-        // Remove active class from all buttons
+
         filterBtns.forEach(btn => btn.classList.remove('active'));
-        // Add active class to clicked button
+
         btn.classList.add('active');
-        
+
         const category = btn.dataset.category;
-        if (category === 'all') {
+
+        if(category === 'all'){
             displayMenuItems(menuItems);
-        } else {
-            const filteredItems = menuItems.filter(item => item.category === category);
-            displayMenuItems(filteredItems);
+        }
+        else{
+
+            const filtered = menuItems.filter(item =>
+                item.category === category
+            );
+
+            displayMenuItems(filtered);
         }
     });
 });
 
-// Add to Cart
-function addToCart(e) {
-    const btn = e.target;
-    const menuItem = btn.closest('.menu-item');
-    const id = menuItem.dataset.id;
-    const selectedItem = menuItems.find(item => item.id === parseInt(id));
+function addToCart(e){
 
-    const existingItem = cart.find(item => item.id === selectedItem.id);
+    const menuItem = e.target.closest('.menu-item');
 
-    if (existingItem) {
+    const id = parseInt(menuItem.dataset.id);
+
+    const selectedItem = menuItems.find(item => item.id === id);
+
+    const existingItem = cart.find(item => item.id === id);
+
+    if(existingItem){
         existingItem.quantity += 1;
-    } else {
-        cart.push({ ...selectedItem, quantity: 1 });
+    }
+    else{
+        cart.push({...selectedItem, quantity:1});
     }
 
-    // Change button text and color
-    btn.textContent = "Added to Cart";
-    btn.classList.add("added");
-
     updateCart();
-
-    const cartIcon = document.querySelector('.cart-icon i');
-    cartIcon.classList.add('animate');
-    setTimeout(() => {
-        cartIcon.classList.remove('animate');
-    }, 500);
 }
 
-// Update Cart
-function updateCart() {
-    // Update cart count
-    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+function updateCart(){
+
+    const totalItems = cart.reduce((total,item) =>
+        total + item.quantity,0
+    );
+
     cartCount.textContent = totalItems;
-    
-    // Update cart items display
+
     renderCartItems();
-    
-    // Update total price
+
     updateTotal();
 }
 
-// Render Cart Items
-function renderCartItems() {
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+function renderCartItems(){
+
+    if(cart.length === 0){
+
+        cartItemsContainer.innerHTML =
+        `<p>Your cart is empty</p>`;
+
         return;
     }
-    
+
     cartItemsContainer.innerHTML = cart.map(item => {
+
         return `
         <div class="cart-item" data-id="${item.id}">
+
             <img src="${item.img}" alt="${item.name}">
+
             <div class="cart-item-info">
-                <h4>${item.name}</h4>
-                <span class="price">$${item.price.toFixed(2)}</span>
+
+                <h5>${item.name}</h5>
+
+                <span class="price">
+                    $${item.price.toFixed(2)}
+                </span>
+
             </div>
+
             <div class="cart-item-quantity">
-                <button class="decrease-btn"><i class="fas fa-minus"></i></button>
+
+                <button class="decrease-btn">-</button>
+
                 <span>${item.quantity}</span>
-                <button class="increase-btn"><i class="fas fa-plus"></i></button>
+
+                <button class="increase-btn">+</button>
+
             </div>
+
             <i class="fas fa-trash remove-item"></i>
+
         </div>
         `;
     }).join('');
-    
-    // Add event listeners to quantity buttons
-    const decreaseBtns = document.querySelectorAll('.decrease-btn');
-    const increaseBtns = document.querySelectorAll('.increase-btn');
-    const removeBtns = document.querySelectorAll('.remove-item');
-    
-    decreaseBtns.forEach(btn => {
+
+    document.querySelectorAll('.decrease-btn').forEach(btn => {
         btn.addEventListener('click', decreaseQuantity);
     });
-    
-    increaseBtns.forEach(btn => {
+
+    document.querySelectorAll('.increase-btn').forEach(btn => {
         btn.addEventListener('click', increaseQuantity);
     });
-    
-    removeBtns.forEach(btn => {
+
+    document.querySelectorAll('.remove-item').forEach(btn => {
         btn.addEventListener('click', removeItem);
     });
 }
 
-// Update Total Price
-function updateTotal() {
-    const total = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+function updateTotal(){
+
+    const total = cart.reduce((sum,item) =>
+        sum + item.price * item.quantity,0
+    );
+
     cartTotal.textContent = total.toFixed(2);
 }
 
-// Decrease Quantity
-function decreaseQuantity(e) {
-    const cartItem = e.target.closest('.cart-item');
-    const id = cartItem.dataset.id;
-    const item = cart.find(item => item.id === parseInt(id));
-    
-    if (item.quantity > 1) {
-        item.quantity -= 1;
-    } else {
-        cart = cart.filter(item => item.id !== parseInt(id));
+function decreaseQuantity(e){
+
+    const id = parseInt(
+        e.target.closest('.cart-item').dataset.id
+    );
+
+    const item = cart.find(item => item.id === id);
+
+    if(item.quantity > 1){
+        item.quantity--;
     }
-    
+    else{
+        cart = cart.filter(item => item.id !== id);
+    }
+
     updateCart();
 }
 
-// Increase Quantity
-function increaseQuantity(e) {
-    const cartItem = e.target.closest('.cart-item');
-    const id = cartItem.dataset.id;
-    const item = cart.find(item => item.id === parseInt(id));
-    
-    item.quantity += 1;
+function increaseQuantity(e){
+
+    const id = parseInt(
+        e.target.closest('.cart-item').dataset.id
+    );
+
+    const item = cart.find(item => item.id === id);
+
+    item.quantity++;
+
     updateCart();
 }
 
-// Remove Item
-function removeItem(e) {
-    const cartItem = e.target.closest('.cart-item');
-    const id = cartItem.dataset.id;
-    
-    cart = cart.filter(item => item.id !== parseInt(id));
+function removeItem(e){
+
+    const id = parseInt(
+        e.target.closest('.cart-item').dataset.id
+    );
+
+    cart = cart.filter(item => item.id !== id);
+
     updateCart();
 }
 
-// Checkout
 checkoutBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-        alert('Your cart is empty!');
+
+    if(cart.length === 0){
+
+        alert("Your cart is empty!");
         return;
     }
 
-    alert(`Order placed! Total: $${cartTotal.textContent}`);
+    alert(`Order placed successfully!`);
 
     cart = [];
-    updateCart();
 
-    // Reset all buttons
-    const buttons = document.querySelectorAll('.add-to-cart');
-    buttons.forEach(btn => {
-        btn.textContent = "Add to Cart";
-        btn.classList.remove("added");
-    });
+    updateCart();
 
     closeCartModal();
 });
 
-// Open Cart Modal
 cartBtn.addEventListener('click', openCartModal);
 
-// Close Cart Modal
 closeCart.addEventListener('click', closeCartModal);
 
-// Close when clicking outside modal
 cartModal.addEventListener('click', (e) => {
-    if (e.target === cartModal) {
+
+    if(e.target === cartModal){
         closeCartModal();
     }
 });
 
-function openCartModal() {
+function openCartModal(){
+
     cartModal.style.display = 'flex';
+
     document.body.style.overflow = 'hidden';
 }
 
-function closeCartModal() {
+function closeCartModal(){
+
     cartModal.style.display = 'none';
+
     document.body.style.overflow = 'auto';
 }
 
-// Smooth scrolling for navigation
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        window.scrollTo({
-            top: targetElement.offsetTop - 70,
-            behavior: 'smooth'
-        });
-    });
-});
-
-// Initialize
 displayMenuItems(menuItems);
